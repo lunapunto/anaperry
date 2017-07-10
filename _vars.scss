@@ -1,0 +1,89 @@
+$r: 'Roboto', sans-serif;
+$o: 'Open Sans', serif;
+$m: 'Montserrat', sans-serif;
+$h: 'Harmattan', sans-serif;
+$g: 'Gruppo', sans-serif;
+$p: 'Poiret One', sans-serif;
+/*
+* Mixin para hacer compatibilidad web
+*/
+@mixin webcompat($attr, $string){
+    -webkit-#{$attr}: $string;
+    -moz-#{$attr} : $string;
+    #{$attr} : $string;
+}
+/*
+* Mixin de animation
+* Ejemplo @include animation(fadeIn 3s infinite)
+*/
+@mixin animation($string){
+    @include webcompat(animation,$string);
+}
+/*
+* Mixin de transformación
+* Ejemplo @include animation(rotate(90deg))
+*/
+@mixin transform($string){
+    @include webcompat(transform,$string);
+}
+/*
+* Mixin de transiciones
+* Ejemplo @include transition(all 2s ease)
+*/
+@mixin transition($string){
+    @include webcompat(transition,$string);
+}
+/*
+* Mixin de filtros
+* Ejemplo @include filter(invert(1))
+*/
+@mixin filter($string){
+    @include webcompat(filter, $string);
+}
+/*
+* Transición lenta
+* Ejemplo @extend .ta
+*/
+.ta{
+    @include transition(all .5s ease-out);
+}
+/*
+* Transición rápida
+* Ejemplo @extend .ta_q
+*/
+.ta_q{
+    @include transition(all .2s ease-out);
+}
+/*
+* Centra verticalmente un elemento y asigna posición absoluta relativa al parent
+*/
+.cy{
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+}
+/*
+* Centra horizontalmente un elemento y asigna posición absoluta relativa al parent
+*/
+.cx{
+    position: absolute;
+    left: 50%;
+    @include transform(translateX(-50%));
+}
+/*
+* Centra verticalmente y horizontalmente un elemento y asigna posición absoluta relativa al parent
+*/
+.cxy{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    @include transform(translate(-50%,-50%));
+}
+/*
+* Convierte en flex un elemento
+*/
+.flex{
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+}
